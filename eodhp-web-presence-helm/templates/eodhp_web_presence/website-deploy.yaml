@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eodhp-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eodhp-website
+  template:
+    metadata:
+      labels:
+        app: eodhp-website
+    spec:
+      containers:
+        - name: eodhp-website
+          image: hcollingwoodtpz/eodhp_website:0.1.3
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_URL
+              value: https://eodhp-website.test.com
+            - name: SQL_HOST
+              value: postgres-service
+            - name: SQL_PORT
+              value: "5432"
+            - name: SQL_DATABASE
+              value: "website_db"
+            - name: SQL_ENGINE
+#              value: "django.db.backends.postgresql"
+              value: "django.db.backends.postgresql_psycopg2"
+            - name: SQL_USER
+              value: "admin"
+            - name: SQL_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                    name: website-database-password
+                    key: POSTGRES_PASSWORD
+#              value: password

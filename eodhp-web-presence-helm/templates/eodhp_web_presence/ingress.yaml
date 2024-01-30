@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eodhp-website-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: eodhp-website.test.com
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: eodhp-website-service
+                port:
+                  number: 8000

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eodhp-website-database
+spec:
+  selector:
+    matchLabels:
+      app: eodhp-website-database
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: eodhp-website-database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: website_db
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                    name: website-database-password
+                    key: POSTGRES_PASSWORD
+#              value: password
+          volumeMounts:
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgres
+#        volumes:
+#          - name: postgres-persistent-storage
+#            persistentVolumeClaim:
+#              claimName: postgres-pvc
+
+
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-persistent-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi
