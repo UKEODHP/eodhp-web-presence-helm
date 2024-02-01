@@ -19,21 +19,16 @@ spec:
             - containerPort: 8000
           env:
             - name: APP_URL
-              value: https://eodhp-website.test.com
+              value: {{ .Values.app_url | default "www.example.com" }}
             - name: SQL_HOST
-              value: postgres-service
+              value: {{ .Values.sql_host | default "postgres-service" }}
             - name: SQL_PORT
-              value: "5432"
+              value: {{ .Values.sql_port | default "5432" | quote }}
             - name: SQL_DATABASE
-              value: "website_db"
+              value: {{ .Values.sql_database | default "web_presence_db" }}
             - name: SQL_ENGINE
-#              value: "django.db.backends.postgresql"
-              value: "django.db.backends.postgresql_psycopg2"
+              value: {{ .Values.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
             - name: SQL_USER
-              value: "admin"
+              value: {{ .Values.sql_user | default "admin" }}
             - name: SQL_PASSWORD
-              valueFrom:
-                  secretKeyRef:
-                    name: website-database-password
-                    key: POSTGRES_PASSWORD
-#              value: password
+              value: {{ .Values.sql_password | default "password" }}
