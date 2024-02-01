@@ -19,11 +19,11 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_DB
-              value: {{ .Values.sql_database | default "web_presence_db" }}
+              value: {{ .Values.database.sql_database | default "web_presence_db" }}
             - name: POSTGRES_USER
-              value: {{ .Values.sql_user | default "admin" }}
+              value: {{ .Values.database.sql_user | default "admin" }}
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.sql_password | default "password" }}
+              value: {{ .Values.database.sql_password | default "password" }}
           volumeMounts:
             - name: postgres-persistent-storage
               mountPath: /var/lib/postgres

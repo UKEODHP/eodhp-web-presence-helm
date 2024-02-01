@@ -21,14 +21,14 @@ spec:
             - name: APP_URL
               value: {{ .Values.app_url | default "www.example.com" }}
             - name: SQL_HOST
-              value: {{ .Values.sql_host | default "postgres-service" }}
+              value: {{ .Values.database.sql_host | default "postgres-service" }}
             - name: SQL_PORT
-              value: {{ .Values.sql_port | default "5432" | quote }}
+              value: {{ .Values.database.sql_port | default "5432" | quote }}
             - name: SQL_DATABASE
-              value: {{ .Values.sql_database | default "web_presence_db" }}
+              value: {{ .Values.database.sql_database | default "web_presence_db" }}
             - name: SQL_ENGINE
-              value: {{ .Values.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
+              value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
             - name: SQL_USER
-              value: {{ .Values.sql_user | default "admin" }}
+              value: {{ .Values.database.sql_user | default "admin" }}
             - name: SQL_PASSWORD
-              value: {{ .Values.sql_password | default "password" }}
+              value: {{ .Values.database.sql_password | default "password" }}

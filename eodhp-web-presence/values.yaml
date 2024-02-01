@@ -4,20 +4,21 @@
 
 
 app_url: https://eodhp-website.test.com
-sql_host: postgres-service
-sql_port: 5432
-sql_database: "web_presence_db"
-sql_engine: "django.db.backends.postgresql_psycopg2"
-sql_user: "admin"
-sql_password: "password"
 
+database:
+  sql_host: postgres-service
+  sql_port: 5432
+  sql_database: "web_presence_db"
+  sql_engine: "django.db.backends.postgresql_psycopg2"
+  sql_user: "admin"
+  sql_password: "password"
 
 ingress:
   host: eodhp-website.test.com
 
 
 
-
+## Below is from the original template and is kept for reference during development. To be deleted at a later date
 replicaCount: 1
 
 image:
