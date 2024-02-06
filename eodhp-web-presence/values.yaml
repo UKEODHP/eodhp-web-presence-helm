@@ -16,6 +16,9 @@ database:
 ingress:
   host: eodhp-website.test.com
 
+resource_catalogue:
+  version: v1.2.3
+
 
 
 ## Below is from the original template and is kept for reference during development. To be deleted at a later date
