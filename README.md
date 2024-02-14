@@ -15,3 +15,9 @@ The following environment variables can be configured:
   - HOST
 - Resource Catalogue:
   - RESOURCE_CATALOGUE_VERSION
+
+## Deployment
+```bash
+helm package eodhp-web-presence/
+helm push eodhp-web-presence-x.y.z.tgz oci://REPO_URL
+```

@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: eodhp-website-database
-  replicas: 3
+  replicas: {{ .Values.database.number_of_replicas | default 1 }}
   template:
     metadata:
       labels:
@@ -34,7 +34,7 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: standard
+        storageClassName: {{ .Values.storage_class | default "standard" }}
         resources:
           requests:
             storage: 1Gi
