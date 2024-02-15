@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eodhp-website
+  name: eodhp-web-presence
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eodhp-website
+      app: eodhp-web-presence
   template:
     metadata:
       labels:
-        app: eodhp-website
+        app: eodhp-web-presence
     spec:
       containers:
-        - name: eodhp-website
+        - name: eodhp-web-presence
           image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:latest
           ports:
             - containerPort: 8000

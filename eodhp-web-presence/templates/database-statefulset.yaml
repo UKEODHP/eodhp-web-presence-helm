@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: eodhp-website-database
+  name: eodhp-web-presence-database
 spec:
   selector:
     matchLabels:
-      app: eodhp-website-database
+      app: eodhp-web-presence-database
   replicas: {{ .Values.database.number_of_replicas | default 1 }}
   template:
     metadata:
       labels:
-        app: eodhp-website-database
+        app: eodhp-web-presence-database
     spec:
       containers:
         - name: postgres

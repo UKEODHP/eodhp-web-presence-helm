@@ -4,7 +4,7 @@ metadata:
   name: postgres-service
 spec:
   selector:
-    app: eodhp-website-database
+    app: eodhp-web-presence-database
   ports:
     - protocol: TCP
       port: 5432

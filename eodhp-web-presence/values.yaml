@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 
-app_url: https://eodhp-website.test.com
+app_url: https://eodhp-web-presence.test.com
 
 database:
   sql_host: postgres-service
@@ -15,7 +15,7 @@ database:
   number_of_replicas: 1
 
 ingress:
-  host: eodhp-website.test.com
+  host: eodhp-web-presence.test.com
 
 resource_catalogue:
   version: v1.2.3
