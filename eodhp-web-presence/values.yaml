@@ -12,7 +12,6 @@ database:
   sql_engine: "django.db.backends.postgresql_psycopg2"
   sql_user: "admin"
   sql_password: "password"
-  number_of_replicas: 1
 
 ingress:
   host: eodhp-web-presence.test.com

@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - name: db-migrate
+        image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.0
+        command: ["sh", "-c", "python manage.py migrate"]
+        env:
+          - name: SQL_HOST
+            value: {{ .Values.database.sql_host | default "postgres-service" }}
+          - name: SQL_PORT
+            value: {{ .Values.database.sql_port | default "5432" | quote }}
+          - name: SQL_DATABASE
+            value: {{ .Values.database.sql_database | default "web_presence_db" }}
+          - name: SQL_ENGINE
+            value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
+          - name: SQL_USER
+            value: {{ .Values.database.sql_user | default "admin" }}
+          - name: SQL_PASSWORD
+            value: {{ .Values.database.sql_password | default "password" }}
+      restartPolicy: OnFailure
+  backoffLimit: 10

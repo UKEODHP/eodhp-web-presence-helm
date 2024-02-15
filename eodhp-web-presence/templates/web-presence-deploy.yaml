@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: eodhp-web-presence
-          image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:latest
+          image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.0
           ports:
             - containerPort: 8000
           env:
