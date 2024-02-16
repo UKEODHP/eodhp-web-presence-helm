@@ -23,7 +23,11 @@ spec:
             - name: POSTGRES_USER
               value: {{ .Values.database.sql_user | default "admin" }}
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.database.sql_password | default "password" }}
+              valueFrom:
+                secretKeyRef:
+                  name: sql-password
+                  key: password
+#              value: {{ .Values.database.sql_password | default "password" }}
           volumeMounts:
             - name: postgres-persistent-storage
               mountPath: /var/lib/postgres
