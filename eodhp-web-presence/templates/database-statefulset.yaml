@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eodhp-web-presence-database
+spec:
+  selector:
+    matchLabels:
+      app: eodhp-web-presence-database
+  replicas: 1  # version 0.1.0 only supports one database
+  template:
+    metadata:
+      labels:
+        app: eodhp-web-presence-database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.database.sql_database | default "web_presence_db" }}
+            - name: POSTGRES_USER
+              value: {{ .Values.database.sql_user | default "admin" }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.database.sql_password | default "password" }}
+          volumeMounts:
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgres
+
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-persistent-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: {{ .Values.storage_class | default "standard" }}
+        resources:
+          requests:
+            storage: 1Gi

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: eodhp-web-presence
+description: The EODHP Web Presence
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

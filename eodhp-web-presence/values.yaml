@@ -1,0 +1,22 @@
+# Default values for eodhp-web-presence.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+app_url: https://eodhp-web-presence.test.com
+
+database:
+  sql_host: postgres-service
+  sql_port: 5432
+  sql_database: "web_presence_db"
+  sql_engine: "django.db.backends.postgresql_psycopg2"
+  sql_user: "admin"
+  sql_password: "password"
+
+ingress:
+  host: eodhp-web-presence.test.com
+
+resource_catalogue:
+  version: v1.2.3
+
+storage_class: standard

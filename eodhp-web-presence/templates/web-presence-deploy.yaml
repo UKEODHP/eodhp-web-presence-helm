@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eodhp-web-presence
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eodhp-web-presence
+  template:
+    metadata:
+      labels:
+        app: eodhp-web-presence
+    spec:
+      containers:
+        - name: eodhp-web-presence
+          image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_URL
+              value: {{ .Values.app_url | default "www.example.com" }}
+            - name: SQL_HOST
+              value: {{ .Values.database.sql_host | default "postgres-service" }}
+            - name: SQL_PORT
+              value: {{ .Values.database.sql_port | default "5432" | quote }}
+            - name: SQL_DATABASE
+              value: {{ .Values.database.sql_database | default "web_presence_db" }}
+            - name: SQL_ENGINE
+              value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
+            - name: SQL_USER
+              value: {{ .Values.database.sql_user | default "admin" }}
+            - name: SQL_PASSWORD
+              value: {{ .Values.database.sql_password | default "password" }}
+            - name: RESOURCE_CATALOGUE_VERSION
+              value: {{ .Values.resource_catalogue.version | default "v1.0.0" }}
