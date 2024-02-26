@@ -16,7 +16,7 @@ database:
 ingress:
   host: eodhp-web-presence.test.com
 
-resource_catalogue:
-  version: v1.2.3
+eox_viewserver:
+  url: "https://dev.my-eoxviewserver.com"
 
 storage_class: standard
