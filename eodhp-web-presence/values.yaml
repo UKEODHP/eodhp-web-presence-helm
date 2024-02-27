@@ -16,6 +16,9 @@ database:
 ingress:
   host: eodhp-web-presence.test.com
 
+eox_viewserver:
+  url: "https://dev.my-eoxviewserver.com"
+
 stac_browser:
   url: https://my-stac-browser.com
 

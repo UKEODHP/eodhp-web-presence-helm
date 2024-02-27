@@ -32,5 +32,7 @@ spec:
               value: {{ .Values.database.sql_user | default "admin" }}
             - name: SQL_PASSWORD
               value: {{ .Values.database.sql_password | default "password" }}
+            - name: EOX_VIEWSERVER_URL
+              value: {{ .Values.eox_viewserver.url | default "https://dev.my-eoxviewserver.com" }}
             - name: STAC_BROWSER_URL
               value: {{ .Values.stac_browser.url | default "https://my-stac-browser.com" }}
