@@ -19,4 +19,7 @@ ingress:
 eox_viewserver:
   url: "https://dev.my-eoxviewserver.com"
 
+stac_browser:
+  url: https://my-stac-browser.com
+
 storage_class: standard
