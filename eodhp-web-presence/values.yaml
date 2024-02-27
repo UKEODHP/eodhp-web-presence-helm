@@ -16,7 +16,7 @@ database:
 ingress:
   host: eodhp-web-presence.test.com
 
-resource_catalogue:
-  version: v1.2.3
+stac_browser:
+  url: https://my-stac-browser.com
 
 storage_class: standard
