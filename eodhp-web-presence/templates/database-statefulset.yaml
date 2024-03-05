@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: eodhp-web-presence-database
-  replicas: 1  # version 0.1.0 only supports one database
+  replicas: 1  # current version only supports one database
   template:
     metadata:
       labels:
