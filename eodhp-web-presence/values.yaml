@@ -24,7 +24,7 @@ resource_catalogue:
   url: https://my-stac-browser.com
   version: v3.1.1
 
-catalogue-data:
+catalogue_data:
   url: https://my-stac-browser.com/catalog.json
 
 storage_class: standard
