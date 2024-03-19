@@ -4,7 +4,7 @@
 
 
 app_url: https://eodhp-web-presence.test.com
-image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.2
+image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.4
 
 database:
   sql_host: postgres-service
@@ -20,8 +20,12 @@ ingress:
 eox_viewserver:
   url: "https://dev.my-eoxviewserver.com"
 
-stac_browser:
+resource_catalogue:
   url: https://my-stac-browser.com
+  version: v3.1.1
+
+catalogue-data:
+  url: https://my-stac-browser.com/catalog.json
 
 storage_class: standard
 

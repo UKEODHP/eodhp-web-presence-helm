@@ -1,6 +1,10 @@
 # Changelog
 
   
+## v0.1.3 (19-03-2024)
+
+- Updated to use v0.1.4 docker image
+  
 ## v0.1.2 (05-03-2024)
 
 - Updated to use v0.1.2 docker image
