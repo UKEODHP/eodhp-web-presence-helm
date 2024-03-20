@@ -27,5 +27,7 @@ resource_catalogue:
 catalogue_data:
   url: https://my-stac-browser.com/catalog.json
 
-storage_class: standard
+notebooks:
+  url: https://notebooks.co.uk/apphub
 
+storage_class: standard

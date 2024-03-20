@@ -40,3 +40,5 @@ spec:
               value: {{ .Values.resource_catalogue.url | default "https://my-stac-browser.com" }}
             - name: CATALOGUE_DATA_URL
               value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
+            - name: NOTEBOOKS_URL
+              value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
