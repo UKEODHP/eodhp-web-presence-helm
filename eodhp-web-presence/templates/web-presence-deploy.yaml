@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.2" }}
+          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.4" }}
           ports:
             - containerPort: 8000
           env:
@@ -34,5 +34,9 @@ spec:
               value: {{ .Values.database.sql_password | default "password" }}
             - name: EOX_VIEWSERVER_URL
               value: {{ .Values.eox_viewserver.url | default "https://dev.my-eoxviewserver.com" }}
-            - name: STAC_BROWSER_URL
-              value: {{ .Values.stac_browser.url | default "https://my-stac-browser.com" }}
+            - name: RESOURCE_CATALOGUE_VERSION
+              value: {{ .Values.resource_catalogue.version | default "v1.0.0" }}
+            - name: RESOURCE_CATALOGUE_URL
+              value: {{ .Values.resource_catalogue.url | default "https://my-stac-browser.com" }}
+            - name: CATALOGUE_DATA_URL
+              value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
