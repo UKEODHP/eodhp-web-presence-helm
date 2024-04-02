@@ -30,4 +30,8 @@ catalogue_data:
 notebooks:
   url: https://notebooks.co.uk/apphub
 
+aws:
+  region: eu-west-2
+  static_s3_bucket: static-bucket
+
 storage_class: standard
