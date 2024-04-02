@@ -7,8 +7,11 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.5" }}
-        command: ["sh", "-c", "python manage.py migrate"]
+        image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.5-logTest6" }}
+        command: ["sh", "-c"]
+        args:
+#          - python manage.py collectstatic --noinput;
+            python manage.py migrate;
         env:
           - name: SQL_HOST
             value: {{ .Values.database.sql_host | default "postgres-service" }}
@@ -22,5 +25,11 @@ spec:
             value: {{ .Values.database.sql_user | default "admin" }}
           - name: SQL_PASSWORD
             value: {{ .Values.database.sql_password | default "password" }}
+          - name: WEB_PRESENCE_STATIC_S3_BUCKET
+            value: {{ .Values.aws.static_s3_bucket | default "my_s3_bucket" }}
+          - name: AWS_REGION_NAME
+            value: {{ .Values.aws.region | default "eu-west-2" }}
+          - name: ENVIRONMENT_NAME
+            value: {{ .Values.environment.name | default "env" }}
       restartPolicy: OnFailure
   backoffLimit: 10
