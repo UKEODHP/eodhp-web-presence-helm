@@ -4,10 +4,7 @@
 
 
 app_url: https://eodhp-web-presence.test.com
-image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.5-logTest6
-
-environment:
-  name: my-environment
+image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.6
 
 database:
   sql_host: postgres-service
