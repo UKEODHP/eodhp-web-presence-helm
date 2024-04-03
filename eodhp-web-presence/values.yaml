@@ -30,8 +30,12 @@ catalogue_data:
 notebooks:
   url: https://notebooks.co.uk/apphub
 
-aws:
-  region: eu-west-2
-  static_s3_bucket: static-bucket
+secrets:
+  key: 5eKr3tK3y
+  old_key: 0Ld5eKr3tK3y
+
+hosting:
+  allowed_hosts: '["localhost", "127.0.0.1", "my.website.co.uk"]'
+  base_url: www.example.com
 
 storage_class: standard

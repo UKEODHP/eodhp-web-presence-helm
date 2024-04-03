@@ -8,6 +8,10 @@
 
 - Update to use v0.1.5 docker image 
   
+## v0.1.5 (27-03-2024)
+
+- Add environment variables for Wagtail settings
+  
 ## v0.1.4 (20-03-2024)
 
 - Add notebook environment variable
