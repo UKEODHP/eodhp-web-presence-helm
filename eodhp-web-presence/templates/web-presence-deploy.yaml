@@ -43,9 +43,7 @@ spec:
             - name: NOTEBOOKS_URL
               value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
             - name: SECRET_KEY
-              value: {{ .Values.secrets.key | default "5eKr3tK3y" }}
-            - name: OLD_SECRET_KEY
-              value: {{ .Values.secrets.old_key | default "0Ld5eKr3tK3y" }}
+              value: {{ randAlphaNum 32 | quote }}
             - name: ALLOWED_HOSTS
               value: {{ .Values.hosting.allowed_hosts | default '["localhost", "127.0.0.1", "my.website.co.uk"]' }}
             - name: BASE_URL
