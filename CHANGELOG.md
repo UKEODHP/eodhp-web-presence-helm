@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.7 (04-04-2024)
+
+- Add dynamically generated SECRET_KEY
+
 ## v0.1.6 (02-04-2024)
 
 - Update to use v0.1.6 docker image 
