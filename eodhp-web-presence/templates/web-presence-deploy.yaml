@@ -48,3 +48,8 @@ spec:
               value: {{ .Values.aws.region | default "eu-west-2" }}
             - name: ENVIRONMENT_NAME
               value: {{ .Values.environment.name | default "env" }}
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret-key
+                  key: SECRET_KEY
