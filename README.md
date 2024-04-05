@@ -4,6 +4,10 @@ This provides the infrastructure for the [EODHP Web Presence](https://github.com
 
 The following environment variables can be configured:
 - APP_URL
+- - Wagtail Configuration:
+  - SECRET_KEY
+  - ALLOWED_HOSTS
+  - BASE_URL
 - Database:
   - SQL_HOST
   - SQL_PORT
@@ -15,6 +19,12 @@ The following environment variables can be configured:
   - HOST
 - Resource Catalogue:
   - RESOURCE_CATALOGUE_VERSION
+  - RESOURCE_CATALOGUE_URL
+  - CATALOGUE_DATA_URL
+- Notebooks:
+  - NOTEBOOKS_URL
+- EOxView Server:
+  - EOX_VIEWSERVER_URL
 
 ## Deployment
 ```bash
