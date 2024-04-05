@@ -35,3 +35,6 @@ aws:
   static_s3_bucket: static-bucket
 
 storage_class: standard
+
+environment:
+  name: test

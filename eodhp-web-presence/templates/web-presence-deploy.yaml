@@ -42,9 +42,3 @@ spec:
               value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
             - name: NOTEBOOKS_URL
               value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
-            - name: WEB_PRESENCE_STATIC_S3_BUCKET
-              value: {{ .Values.aws.static_s3_bucket | default "my_s3_bucket" }}
-            - name: AWS_REGION_NAME
-              value: {{ .Values.aws.region | default "eu-west-2" }}
-            - name: ENVIRONMENT_NAME
-              value: {{ .Values.environment.name | default "env" }}
