@@ -3,7 +3,7 @@
 ## v0.1.7 (04-04-2024)
 
 - Add dynamically generated SECRET_KEY
-- Add other environment variables
+- Add other environment variables for Base URL and allowed hosts
 
 ## v0.1.6 (02-04-2024)
 
