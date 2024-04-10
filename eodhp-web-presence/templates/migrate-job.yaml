@@ -22,11 +22,5 @@ spec:
             value: {{ .Values.database.sql_user | default "admin" }}
           - name: SQL_PASSWORD
             value: {{ .Values.database.sql_password | default "password" }}
-          - name: WEB_PRESENCE_STATIC_S3_BUCKET
-            value: {{ .Values.aws.static_s3_bucket | default "my_s3_bucket" }}
-          - name: AWS_REGION_NAME
-            value: {{ .Values.aws.region | default "eu-west-2" }}
-          - name: ENVIRONMENT_NAME
-            value: {{ .Values.environment.name | default "env" }}
       restartPolicy: OnFailure
   backoffLimit: 10
