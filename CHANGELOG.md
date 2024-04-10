@@ -1,13 +1,17 @@
 # Changelog
 
+## v0.1.7 (05-04-2024)
+
+- Moved persistent volume for postgres
+
 ## v0.1.6 (02-04-2024)
 
 - Update to use v0.1.6 docker image 
-- 
+
 ## v0.1.5 (02-04-2024)
 
 - Update to use v0.1.5 docker image 
-  
+
 ## v0.1.4 (20-03-2024)
 
 - Add notebook environment variable
