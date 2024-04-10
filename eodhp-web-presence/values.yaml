@@ -35,3 +35,7 @@ aws:
   static_s3_bucket: static-bucket
 
 storage_class: standard
+
+django:
+  secret_name: "django-secret-key"
+  secret_key: "SECRET_KEY"

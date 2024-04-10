@@ -49,7 +49,11 @@ spec:
             - name: ENVIRONMENT_NAME
               value: {{ .Values.environment.name | default "env" }}
             - name: SECRET_KEY
+              {{- if .Values.django.secret_name }}
               valueFrom:
                 secretKeyRef:
-                  name: django-secret-key
-                  key: SECRET_KEY
+                  name: {{ .Values.django.secret_name }}
+                  key: {{ .Values.django.secret_key }}
+              {{- else }}
+              value: default-insecure-django-secret-key
+              {{- end }}
