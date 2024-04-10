@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.6" }}
+        image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.7-rc1" }}
         command: ["sh", "-c", "python manage.py migrate"]
         env:
           - name: SQL_HOST
