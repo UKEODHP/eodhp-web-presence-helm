@@ -36,6 +36,8 @@ aws:
 
 storage_class: standard
 
-django:
-  secret_name: "django-secret-key"
-  secret_key: "SECRET_KEY"
+web:
+  djangoSecret:
+    value: insecure-secret
+    existingSecret: ""
+    existingSecretKey: ""
