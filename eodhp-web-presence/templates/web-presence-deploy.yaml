@@ -30,11 +30,11 @@ spec:
               value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
             - name: SQL_USER
               value: {{ .Values.database.sql_user | default "admin" }}
-            {{- if .Values.database.secretKeys.sqlPasswordKey }}
+            {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: web-presence
+                  name: {{ .Values.database.existingSecret }}
                   key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
             {{- else }}
             - name: SQL_PASSWORD
