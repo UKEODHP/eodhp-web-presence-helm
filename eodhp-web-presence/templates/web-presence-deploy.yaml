@@ -43,6 +43,6 @@ spec:
             - name: NOTEBOOKS_URL
               value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
             - name: ALLOWED_HOSTS
-              value: {{ .Values.hosting.allowed_hosts | default "localhost,127.0.0.1,my.website.co.uk" }}
+              value: {{ .Values.hosting.allowed_hosts | default "localhost,127.0.0.1" }}
             - name: BASE_URL
-              value: {{ .Values.hosting.base_url | default "www.example.com" }}
+              value: {{ .Values.hosting.base_url | default "http://127.0.0.1" }}

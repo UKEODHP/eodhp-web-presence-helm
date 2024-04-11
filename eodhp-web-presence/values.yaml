@@ -31,8 +31,8 @@ notebooks:
   url: https://notebooks.co.uk/apphub
 
 hosting:
-  allowed_hosts: ["localhost", "127.0.0.1", "my.website.co.uk"]
-  base_url: www.example.com
+  allowed_hosts: "localhost,127.0.0.1"
+  base_url: http://127.0.0.1
 
 storage_class: standard
 
