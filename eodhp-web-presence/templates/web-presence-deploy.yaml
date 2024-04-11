@@ -43,11 +43,11 @@ spec:
             - name: NOTEBOOKS_URL
               value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
             - name: SECRET_KEY
-              {{- if .Values.web.existingSecret }}
+              {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.web.existingSecret }}
-                  key: {{ .Values.web.existingSecretKey }}
+                  name: {{ .Values.web.djangoSecret.existingSecret }}
+                  key: {{ .Values.web.djangoSecret.existingSecretKey }}
               {{- else }}
               value: {{ .Values.web.djangoSecret.value | default "insecure-secret" }}
               {{- end }}
