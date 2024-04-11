@@ -22,7 +22,7 @@ spec:
               value: {{ .Values.database.sql_database | default "web_presence_db" }}
             - name: POSTGRES_USER
               value: {{ .Values.database.sql_user | default "admin" }}
-            {{- if .Values.database.existingSecret }}
+            {{- if .Values.database.secretKeys.sqlPasswordKey }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:

@@ -13,7 +13,6 @@ database:
   sql_engine: "django.db.backends.postgresql_psycopg2"
   sql_user: "admin"
   sql_password: "password"
-  existingSecret: false
   secretKeys:
     sqlPasswordKey: ""
 
