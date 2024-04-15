@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.6" }}
+          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.7" }}
           ports:
             - containerPort: 8000
           env:
@@ -50,3 +50,7 @@ spec:
               value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
             - name: NOTEBOOKS_URL
               value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
+            - name: ALLOWED_HOSTS
+              value: {{ .Values.hosting.allowed_hosts | default "localhost,127.0.0.1" }}
+            - name: BASE_URL
+              value: {{ .Values.hosting.base_url | default "http://127.0.0.1" }}
