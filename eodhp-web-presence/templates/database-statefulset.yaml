@@ -22,8 +22,16 @@ spec:
               value: {{ .Values.database.sql_database | default "web_presence_db" }}
             - name: POSTGRES_USER
               value: {{ .Values.database.sql_user | default "admin" }}
+            {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
+            {{- else }}
             - name: POSTGRES_PASSWORD
               value: {{ .Values.database.sql_password | default "password" }}
+            {{- end }}
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
           volumeMounts:
