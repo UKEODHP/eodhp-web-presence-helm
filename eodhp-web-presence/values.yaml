@@ -41,3 +41,9 @@ storage_class: standard
 
 environment:
   name: test
+
+web:
+  djangoSecret:
+    value: insecure-secret
+    existingSecret: ""
+    existingSecretKey: ""
