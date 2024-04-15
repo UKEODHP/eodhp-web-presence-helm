@@ -30,8 +30,16 @@ spec:
               value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
             - name: SQL_USER
               value: {{ .Values.database.sql_user | default "admin" }}
+            {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
+            {{- else }}
             - name: SQL_PASSWORD
               value: {{ .Values.database.sql_password | default "password" }}
+            {{- end }}
             - name: EOX_VIEWSERVER_URL
               value: {{ .Values.eox_viewserver.url | default "https://dev.my-eoxviewserver.com" }}
             - name: RESOURCE_CATALOGUE_VERSION

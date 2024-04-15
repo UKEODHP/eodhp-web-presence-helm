@@ -20,8 +20,16 @@ spec:
             value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
           - name: SQL_USER
             value: {{ .Values.database.sql_user | default "admin" }}
+          {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+          - name: SQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.existingSecret }}
+                key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
+          {{- else }}
           - name: SQL_PASSWORD
             value: {{ .Values.database.sql_password | default "password" }}
+          {{- end }}
           - name: WEB_PRESENCE_STATIC_S3_BUCKET
             value: {{ .Values.aws.static_s3_bucket | default "my_s3_bucket" }}
           - name: AWS_REGION_NAME
