@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.8 (26-04-2024)
+
+- Update to use v0.1.8 docker image 
+
 ## v0.1.7 (15-04-2024)
 
 - Moved persistent volume for postgres
