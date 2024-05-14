@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.9 (14-05-2024)
+
+- Update to use v0.1.9 docker image
+
 ## v0.1.8 (26-04-2024)
 
 - Update to use v0.1.8 docker image 
