@@ -5,6 +5,11 @@
 - Update to use v0.1.9 docker image
 - Remove internal database (superseded by external supporting infrastructure database)
 
+## v0.1.9 (04-06-2024)
+
+- Update to use v0.1.10 docker image 
+- Add environment variables for caching
+
 ## v0.1.8 (26-04-2024)
 
 - Update to use v0.1.8 docker image 
