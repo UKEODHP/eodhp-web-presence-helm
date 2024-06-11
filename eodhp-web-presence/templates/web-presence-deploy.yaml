@@ -68,4 +68,4 @@ spec:
             - name: STATIC_FILE_CACHE_LENGTH
               value: {{ .Values.caching.static_file_length | default "3600" }}
             - name: IS_PROD
-              value: {{ .Values.is_prod | default 0 }}
+              value: {{ .Values.is_prod | default "0" }}
