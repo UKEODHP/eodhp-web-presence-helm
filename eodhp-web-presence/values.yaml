@@ -54,7 +54,7 @@ web:
     existingSecretKey: ""
 
 serviceAccount:
-  create: true
+  create: false
   name: web-presence
   annotations:
     roleArn: "arn:aws:iam::123456789012:role/web-presence"
