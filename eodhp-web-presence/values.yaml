@@ -47,3 +47,9 @@ web:
     value: insecure-secret
     existingSecret: ""
     existingSecretKey: ""
+
+serviceAccount:
+  create: true
+  name: web-presence
+  annotations:
+    roleArn: "arn:aws:iam::123456789012:role/web-presence"
