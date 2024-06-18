@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: azure/setup-helm@v4.2.0
+        id: install
+
       - uses: psf/black@stable
         with:
           options: "--line-length 100 --check --verbose"
@@ -72,4 +75,3 @@ jobs:
           aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR }}
           aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{ secrets.AWS_ECR }}
           helm package eodhp-web-presence/ helm push $IMAGE_NAME-$IMAGE_TAG.tgz oci://${{ secrets.AWS_ECR }}/helm/ 
-          helm template eodhp-web-presence >k.yaml
