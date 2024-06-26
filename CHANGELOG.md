@@ -1,9 +1,12 @@
 # Changelog
 
-## v0.1.11 (25-06-2024)
+## v0.1.11 (14-06-2024)
 
+- Add optional web presence service account
+- Add USE_S3 environment variable
 - Update to use v0.1.11 docker image 
 - Add environment variables for identification
+
 
 ## v0.1.10 (04-06-2024)
 
