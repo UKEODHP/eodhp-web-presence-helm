@@ -2,5 +2,5 @@ apiVersion: v2
 name: eodhp-web-presence
 description: The EODHP Web Presence
 type: application
-version: 0.1.10-jh-test-sa
-appVersion: 0.1.10-jh-test-sa
+version: 0.1.11
+appVersion: 0.1.11
