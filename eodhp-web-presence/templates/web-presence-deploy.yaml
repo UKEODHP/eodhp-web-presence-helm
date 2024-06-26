@@ -72,3 +72,5 @@ spec:
               value: {{ .Values.is_prod | default "0" | quote }}
             - name: USE_S3
               value: {{ .Values.web.useS3 | default "0" | quote }}
+            - name: ENV_NAME
+              value: {{ .Values.env_name | default "default" }}
