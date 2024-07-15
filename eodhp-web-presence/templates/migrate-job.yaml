@@ -7,19 +7,19 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12" }}
+        image: {{ .Values.image }}
         command: ["sh", "-c", "python manage.py migrate"]
         env:
           - name: SQL_HOST
-            value: {{ .Values.database.sql_host | default "postgres-service" }}
+            value: {{ .Values.database.sql_host }}
           - name: SQL_PORT
-            value: {{ .Values.database.sql_port | default "5432" | quote }}
+            value: {{ .Values.database.sql_port | quote }}
           - name: SQL_DATABASE
-            value: {{ .Values.database.sql_database | default "web_presence_db" }}
+            value: {{ .Values.database.sql_database }}
           - name: SQL_ENGINE
-            value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
+            value: {{ .Values.database.sql_engine }}
           - name: SQL_USER
-            value: {{ .Values.database.sql_user | default "admin" }}
+            value: {{ .Values.database.sql_user }}
           {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
           - name: SQL_PASSWORD
             valueFrom:
@@ -28,7 +28,7 @@ spec:
                 key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
           {{- else }}
           - name: SQL_PASSWORD
-            value: {{ .Values.database.sql_password | default "password" }}
+            value: {{ .Values.database.sql_password }}
           {{- end }}
       restartPolicy: OnFailure
   backoffLimit: 10

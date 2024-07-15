@@ -15,12 +15,12 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.image }}
+          image: {{ .Values.web.image }}
           ports:
             - containerPort: 8000
           env:
             - name: APP_URL
-              value: {{ .Values.app_url }}
+              value: {{ .Values.web.url }}
             - name: SQL_HOST
               value: {{ .Values.database.sql_host }}
             - name: SQL_PORT
@@ -69,8 +69,8 @@ spec:
             - name: STATIC_FILE_CACHE_LENGTH
               value: {{ .Values.caching.static_file_length | quote }}
             - name: IS_PROD
-              value: {{ .Values.is_prod | quote }}
+              value: {{ .Values.web.is_prod | quote }}
             - name: USE_S3
               value: {{ .Values.web.useS3 | quote }}
             - name: ENV_NAME
-              value: {{ .Values.env_name }}
+              value: {{ .Values.web.env_name }}
