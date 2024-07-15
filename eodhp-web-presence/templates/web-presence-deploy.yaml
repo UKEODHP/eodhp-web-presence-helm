@@ -12,25 +12,25 @@ spec:
       labels:
         app: eodhp-web-presence
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name | default "default" }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12" }}
+          image: {{ .Values.image }}
           ports:
             - containerPort: 8000
           env:
             - name: APP_URL
-              value: {{ .Values.app_url | default "www.example.com" }}
+              value: {{ .Values.app_url }}
             - name: SQL_HOST
-              value: {{ .Values.database.sql_host | default "postgres-service" }}
+              value: {{ .Values.database.sql_host }}
             - name: SQL_PORT
-              value: {{ .Values.database.sql_port | default "5432" | quote }}
+              value: {{ .Values.database.sql_port | quote }}
             - name: SQL_DATABASE
-              value: {{ .Values.database.sql_database | default "web_presence_db" }}
+              value: {{ .Values.database.sql_database }}
             - name: SQL_ENGINE
-              value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
+              value: {{ .Values.database.sql_engine }}
             - name: SQL_USER
-              value: {{ .Values.database.sql_user | default "admin" }}
+              value: {{ .Values.database.sql_user }}
             {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
@@ -39,18 +39,18 @@ spec:
                   key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
             {{- else }}
             - name: SQL_PASSWORD
-              value: {{ .Values.database.sql_password | default "password" }}
+              value: {{ .Values.database.sql_password }}
             {{- end }}
             - name: EOX_VIEWSERVER_URL
-              value: {{ .Values.eox_viewserver.url | default "https://dev.my-eoxviewserver.com" }}
+              value: {{ .Values.eox_viewserver.url }}
             - name: RESOURCE_CATALOGUE_VERSION
-              value: {{ .Values.resource_catalogue.version | default "v1.0.0" }}
+              value: {{ .Values.resource_catalogue.version }}
             - name: RESOURCE_CATALOGUE_URL
-              value: {{ .Values.resource_catalogue.url | default "https://my-stac-browser.com" }}
+              value: {{ .Values.resource_catalogue.url }}
             - name: CATALOGUE_DATA_URL
-              value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
+              value: {{ .Values.catalogue_data.url }}
             - name: NOTEBOOKS_URL
-              value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
+              value: {{ .Values.notebooks.url }}
             - name: SECRET_KEY
               {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
@@ -58,19 +58,19 @@ spec:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
               {{- else }}
-              value: {{ .Values.web.djangoSecret.value | default "insecure-secret" }}
+              value: {{ .Values.web.djangoSecret.value }}
               {{- end }}
             - name: ALLOWED_HOSTS
-              value: {{ .Values.hosting.allowed_hosts | default "localhost,127.0.0.1" }}
+              value: {{ .Values.hosting.allowed_hosts }}
             - name: BASE_URL
-              value: {{ .Values.hosting.base_url | default "http://127.0.0.1" }}
+              value: {{ .Values.hosting.base_url }}
             - name: PAGE_CACHE_LENGTH
-              value: {{ .Values.caching.page_length | default "300" | quote }}
+              value: {{ .Values.caching.page_length | quote }}
             - name: STATIC_FILE_CACHE_LENGTH
-              value: {{ .Values.caching.static_file_length | default "3600" | quote }}
+              value: {{ .Values.caching.static_file_length | quote }}
             - name: IS_PROD
-              value: {{ .Values.is_prod | default "0" | quote }}
+              value: {{ .Values.is_prod | quote }}
             - name: USE_S3
-              value: {{ .Values.web.useS3 | default "0" | quote }}
+              value: {{ .Values.web.useS3 | quote }}
             - name: ENV_NAME
-              value: {{ .Values.env_name | default "default" }}
+              value: {{ .Values.env_name }}
