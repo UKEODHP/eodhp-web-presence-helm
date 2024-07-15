@@ -12,7 +12,7 @@ spec:
       labels:
         app: eodhp-web-presence
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name }}
+      serviceAccountName: {{ .Values.web.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
           image: {{ .Values.web.image }}
@@ -22,35 +22,35 @@ spec:
             - name: APP_URL
               value: {{ .Values.web.url }}
             - name: SQL_HOST
-              value: {{ .Values.database.sql_host }}
+              value: {{ .Values.web.database.sql_host }}
             - name: SQL_PORT
-              value: {{ .Values.database.sql_port | quote }}
+              value: {{ .Values.web.database.sql_port | quote }}
             - name: SQL_DATABASE
-              value: {{ .Values.database.sql_database }}
+              value: {{ .Values.web.database.sql_database }}
             - name: SQL_ENGINE
-              value: {{ .Values.database.sql_engine }}
+              value: {{ .Values.web.database.sql_engine }}
             - name: SQL_USER
-              value: {{ .Values.database.sql_user }}
-            {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+              value: {{ .Values.web.database.sql_user }}
+            {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.database.existingSecret }}
-                  key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
+                  name: {{ .Values.web.database.existingSecret }}
+                  key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
             {{- else }}
             - name: SQL_PASSWORD
-              value: {{ .Values.database.sql_password }}
+              value: {{ .Values.web.database.sql_password }}
             {{- end }}
             - name: EOX_VIEWSERVER_URL
-              value: {{ .Values.eox_viewserver.url }}
+              value: {{ .Values.web.eox_viewserver.url }}
             - name: RESOURCE_CATALOGUE_VERSION
-              value: {{ .Values.resource_catalogue.version }}
+              value: {{ .Values.web.resource_catalogue.version }}
             - name: RESOURCE_CATALOGUE_URL
-              value: {{ .Values.resource_catalogue.url }}
+              value: {{ .Values.web.resource_catalogue.url }}
             - name: CATALOGUE_DATA_URL
-              value: {{ .Values.catalogue_data.url }}
+              value: {{ .Values.web.catalogue_data.url }}
             - name: NOTEBOOKS_URL
-              value: {{ .Values.notebooks.url }}
+              value: {{ .Values.web.notebooks.url }}
             - name: SECRET_KEY
               {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
@@ -61,13 +61,13 @@ spec:
               value: {{ .Values.web.djangoSecret.value }}
               {{- end }}
             - name: ALLOWED_HOSTS
-              value: {{ .Values.hosting.allowed_hosts }}
+              value: {{ .Values.web.ingress.tls.hosts.allowed_hosts }}
             - name: BASE_URL
-              value: {{ .Values.hosting.base_url }}
+              value: {{ .Values.web.ingress.tls.hosts.base_url }}
             - name: PAGE_CACHE_LENGTH
-              value: {{ .Values.caching.page_length | quote }}
+              value: {{ .Values.web.caching.page_length | quote }}
             - name: STATIC_FILE_CACHE_LENGTH
-              value: {{ .Values.caching.static_file_length | quote }}
+              value: {{ .Values.web.caching.static_file_length | quote }}
             - name: IS_PROD
               value: {{ .Values.web.is_prod | quote }}
             - name: USE_S3

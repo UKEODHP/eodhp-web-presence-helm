@@ -15,49 +15,49 @@ web:
     existingSecretKey: ""
   useS3: 0
 
+  ingress:
+    host: eodhp-web-presence.test.com
+    className: nginx
+    tls:
+      hosts:
+        allowed_hosts: "localhost,127.0.0.1"
+        base_url: http://127.0.0.1
 
-caching:
-  page_length: 300
-  static_file_length: 3600
+  caching:
+    page_length: 300
+    static_file_length: 3600
 
-database:
-  sql_host: postgres-service
-  sql_port: 5432
-  sql_database: "web_presence_db"
-  sql_engine: "django.db.backends.postgresql_psycopg2"
-  sql_user: "admin"
-  sql_password: "password"
-  existingSecret: ""
-  secretKeys:
-    sqlPasswordKey: ""
+  database:
+    sql_host: postgres-service
+    sql_port: 5432
+    sql_database: "web_presence_db"
+    sql_engine: "django.db.backends.postgresql_psycopg2"
+    sql_user: "admin"
+    sql_password: "password"
+    existingSecret: ""
+    secretKeys:
+      sqlPasswordKey: ""
 
-ingress:
-  host: eodhp-web-presence.test.com
+  eox_viewserver:
+    url: "https://dev.my-eoxviewserver.com"
 
-eox_viewserver:
-  url: "https://dev.my-eoxviewserver.com"
+  resource_catalogue:
+    url: https://my-stac-browser.com
+    version: v3.1.1
 
-resource_catalogue:
-  url: https://my-stac-browser.com
-  version: v3.1.1
+  catalogue_data:
+    url: https://my-stac-browser.com/catalog.json
 
-catalogue_data:
-  url: https://my-stac-browser.com/catalog.json
+  notebooks:
+    url: https://notebooks.co.uk/apphub
 
-notebooks:
-  url: https://notebooks.co.uk/apphub
+  storage_class: standard
 
-hosting:
-  allowed_hosts: "localhost,127.0.0.1"
-  base_url: http://127.0.0.1
+  environment:
+    name: test
 
-storage_class: standard
-
-environment:
-  name: test
-
-serviceAccount:
-  create: false
-  name: web-presence
-  annotations:
-    roleArn: "arn:aws:iam::123456789012:role/web-presence"
+  serviceAccount:
+    create: false
+    name: web-presence
+    annotations:
+      roleArn: "arn:aws:iam::123456789012:role/web-presence"

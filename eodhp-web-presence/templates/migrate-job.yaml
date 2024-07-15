@@ -7,28 +7,28 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: {{ .Values.image }}
+        image: {{ .Values.web.image }}
         command: ["sh", "-c", "python manage.py migrate"]
         env:
           - name: SQL_HOST
-            value: {{ .Values.database.sql_host }}
+            value: {{ .Values.web.database.sql_host }}
           - name: SQL_PORT
-            value: {{ .Values.database.sql_port | quote }}
+            value: {{ .Values.web.database.sql_port | quote }}
           - name: SQL_DATABASE
-            value: {{ .Values.database.sql_database }}
+            value: {{ .Values.web.database.sql_database }}
           - name: SQL_ENGINE
-            value: {{ .Values.database.sql_engine }}
+            value: {{ .Values.web.database.sql_engine }}
           - name: SQL_USER
-            value: {{ .Values.database.sql_user }}
-          {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+            value: {{ .Values.web.database.sql_user }}
+          {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
           - name: SQL_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.database.existingSecret }}
-                key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
+                name: {{ .Values.web.database.existingSecret }}
+                key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
           {{- else }}
           - name: SQL_PASSWORD
-            value: {{ .Values.database.sql_password }}
+            value: {{ .Values.web.database.sql_password }}
           {{- end }}
       restartPolicy: OnFailure
   backoffLimit: 10
