@@ -16,6 +16,7 @@ spec:
       containers:
         - name: eodhp-web-presence
           image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12" }}
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
