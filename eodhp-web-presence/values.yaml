@@ -7,7 +7,6 @@ web:
   image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12
 
   extraEnvs:
-    # not really relevant in this example, but you may as well add this functionality to the chart while you're here
     name: MY_EXTRA_ENV
     value: MY_VALUE
   extraEnvFrom:

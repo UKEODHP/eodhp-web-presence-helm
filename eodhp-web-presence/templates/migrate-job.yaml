@@ -9,6 +9,8 @@ spec:
       - name: db-migrate
         image: {{ .Values.web.image }}
         command: ["sh", "-c", "python manage.py migrate"]
+        envFrom:
+            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
         env:
           {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
           - name: SQL_PASSWORD
