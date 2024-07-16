@@ -18,19 +18,11 @@ spec:
           image: {{ .Values.web.image }}
           ports:
             - containerPort: 8000
+          envFrom:
+            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}  # you'll have to play with nindent to get it right
           env:
             - name: APP_URL
               value: {{ .Values.web.url }}
-            - name: SQL_HOST
-              value: {{ .Values.web.database.sql_host }}
-            - name: SQL_PORT
-              value: {{ .Values.web.database.sql_port | quote }}
-            - name: SQL_DATABASE
-              value: {{ .Values.web.database.sql_database }}
-            - name: SQL_ENGINE
-              value: {{ .Values.web.database.sql_engine }}
-            - name: SQL_USER
-              value: {{ .Values.web.database.sql_user }}
             {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
@@ -41,16 +33,6 @@ spec:
             - name: SQL_PASSWORD
               value: {{ .Values.web.database.sql_password }}
             {{- end }}
-            - name: EOX_VIEWSERVER_URL
-              value: {{ .Values.web.eox_viewserver.url }}
-            - name: RESOURCE_CATALOGUE_VERSION
-              value: {{ .Values.web.resource_catalogue.version }}
-            - name: RESOURCE_CATALOGUE_URL
-              value: {{ .Values.web.resource_catalogue.url }}
-            - name: CATALOGUE_DATA_URL
-              value: {{ .Values.web.catalogue_data.url }}
-            - name: NOTEBOOKS_URL
-              value: {{ .Values.web.notebooks.url }}
             - name: SECRET_KEY
               {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
@@ -60,17 +42,3 @@ spec:
               {{- else }}
               value: {{ .Values.web.djangoSecret.value }}
               {{- end }}
-            - name: ALLOWED_HOSTS
-              value: {{ .Values.web.ingress.tls.hosts.allowed_hosts }}
-            - name: BASE_URL
-              value: {{ .Values.web.ingress.tls.hosts.base_url }}
-            - name: PAGE_CACHE_LENGTH
-              value: {{ .Values.web.caching.page_length | quote }}
-            - name: STATIC_FILE_CACHE_LENGTH
-              value: {{ .Values.web.caching.static_file_length | quote }}
-            - name: IS_PROD
-              value: {{ .Values.web.is_prod | quote }}
-            - name: USE_S3
-              value: {{ .Values.web.useS3 | quote }}
-            - name: ENV_NAME
-              value: {{ .Values.web.env_name }}

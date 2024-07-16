@@ -10,16 +10,6 @@ spec:
         image: {{ .Values.web.image }}
         command: ["sh", "-c", "python manage.py migrate"]
         env:
-          - name: SQL_HOST
-            value: {{ .Values.web.database.sql_host }}
-          - name: SQL_PORT
-            value: {{ .Values.web.database.sql_port | quote }}
-          - name: SQL_DATABASE
-            value: {{ .Values.web.database.sql_database }}
-          - name: SQL_ENGINE
-            value: {{ .Values.web.database.sql_engine }}
-          - name: SQL_USER
-            value: {{ .Values.web.database.sql_user }}
           {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
           - name: SQL_PASSWORD
             valueFrom:
