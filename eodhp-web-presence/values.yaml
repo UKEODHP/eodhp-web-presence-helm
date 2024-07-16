@@ -4,9 +4,7 @@
 
 
 web:
-  url: https://eodhp-web-presence.test.com
   image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12
-  env_name: default
 
   extraEnvs:
     # not really relevant in this example, but you may as well add this functionality to the chart while you're here
@@ -15,8 +13,8 @@ web:
   extraEnvFrom:
     - configMapRef:
         name: web-presence-envs-config-map
-#    - secretRef:
-#        name: web-presence-secret-envs
+    - secretRef:
+        name: web-presence-envs
 
   djangoSecret:
     value: insecure-secret
@@ -26,10 +24,6 @@ web:
   ingress:
     host: eodhp-web-presence.test.com
     className: nginx
-
-  caching:
-    page_length: 300
-    static_file_length: 3600
 
   database:
     existingSecret: ""

@@ -21,8 +21,6 @@ spec:
           envFrom:
             {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}  # you'll have to play with nindent to get it right
           env:
-            - name: APP_URL
-              value: {{ .Values.web.url }}
             {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
