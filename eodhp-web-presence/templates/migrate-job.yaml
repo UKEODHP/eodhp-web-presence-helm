@@ -8,6 +8,7 @@ spec:
       containers:
       - name: db-migrate
         image: {{ .Values.web.image }}
+        imagePullPolicy: Always
         command: ["sh", "-c", "python manage.py migrate"]
         envFrom:
             {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}

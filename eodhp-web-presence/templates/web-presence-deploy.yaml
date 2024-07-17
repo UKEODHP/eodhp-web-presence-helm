@@ -16,6 +16,7 @@ spec:
       containers:
         - name: eodhp-web-presence
           image: {{ .Values.web.image }}
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           envFrom:
