@@ -28,9 +28,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.web.database.existingSecret }}
                   key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
-            {{- else }}
-            - name: SQL_PASSWORD
-              value: {{ .Values.web.database.sql_password }}
             {{- end }}
             - name: SECRET_KEY
               {{- if .Values.web.djangoSecret.existingSecret }}
@@ -38,6 +35,4 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
-              {{- else }}
-              value: {{ .Values.web.djangoSecret.value }}
               {{- end }}

@@ -19,5 +19,6 @@ spec:
               secretKeyRef:
                 name: {{ .Values.web.database.existingSecret }}
                 key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
+          {{- end }}
       restartPolicy: OnFailure
   backoffLimit: 10
