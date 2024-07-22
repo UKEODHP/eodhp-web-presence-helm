@@ -9,11 +9,11 @@ web:
   extraEnvs:
     name: MY_EXTRA_ENV
     value: MY_VALUE
-  extraEnvFrom:
-    - configMapRef:
-        name: web-presence-envs-config-map
-    - secretRef:
-        name: web-presence-envs
+  extraEnvFrom: {}
+#    - configMapRef:
+#        name: web-presence-envs-config-map
+#    - secretRef:
+#        name: web-presence-envs
 
   djangoSecret:
     value: insecure-secret
@@ -38,4 +38,4 @@ web:
     create: false
     name: web-presence
     annotations:
-      roleArn: "arn:aws:iam::123456789012:role/web-presence"
+      eks.amazonaws.com/role-arn: "arn:aws:iam::312280911266:role/eodhp-dev-web-presence-role"
