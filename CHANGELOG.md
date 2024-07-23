@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.14 (16-07-2024)
+
+- Modify charts to take parameters from secrets and configmaps
+
 ## v0.1.12 (09-07-2024)
 
 - Use v0.1.12 image

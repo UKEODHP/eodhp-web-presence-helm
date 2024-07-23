@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: eodhp-web-presence-ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{.Values.web.ingress.className}}
   rules:
-    - host: {{.Values.ingress.host}}
+    - host: {{.Values.web.ingress.host}}
       http:
         paths:
           - path: "/"

@@ -12,66 +12,27 @@ spec:
       labels:
         app: eodhp-web-presence
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name | default "default" }}
+      serviceAccountName: {{ .Values.web.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.image | default "public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12" }}
+          image: {{ .Values.web.image }}
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          envFrom:
+            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
           env:
-            - name: APP_URL
-              value: {{ .Values.app_url | default "www.example.com" }}
-            - name: SQL_HOST
-              value: {{ .Values.database.sql_host | default "postgres-service" }}
-            - name: SQL_PORT
-              value: {{ .Values.database.sql_port | default "5432" | quote }}
-            - name: SQL_DATABASE
-              value: {{ .Values.database.sql_database | default "web_presence_db" }}
-            - name: SQL_ENGINE
-              value: {{ .Values.database.sql_engine | default "django.db.backends.postgresql_psycopg2" }}
-            - name: SQL_USER
-              value: {{ .Values.database.sql_user | default "admin" }}
-            {{- if and (.Values.database.secretKeys.sqlPasswordKey) (.Values.database.existingSecret) }}
+            {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.database.existingSecret }}
-                  key:  {{ .Values.database.secretKeys.sqlPasswordKey }}
-            {{- else }}
-            - name: SQL_PASSWORD
-              value: {{ .Values.database.sql_password | default "password" }}
+                  name: {{ .Values.web.database.existingSecret }}
+                  key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
             {{- end }}
-            - name: EOX_VIEWSERVER_URL
-              value: {{ .Values.eox_viewserver.url | default "https://dev.my-eoxviewserver.com" }}
-            - name: RESOURCE_CATALOGUE_VERSION
-              value: {{ .Values.resource_catalogue.version | default "v1.0.0" }}
-            - name: RESOURCE_CATALOGUE_URL
-              value: {{ .Values.resource_catalogue.url | default "https://my-stac-browser.com" }}
-            - name: CATALOGUE_DATA_URL
-              value: {{ .Values.catalogue_data.url | default "https://my-stac-browser-data.com/catalog.json" }}
-            - name: NOTEBOOKS_URL
-              value: {{ .Values.notebooks.url | default "https://notebooks.co.uk/apphub" }}
             - name: SECRET_KEY
               {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
-              {{- else }}
-              value: {{ .Values.web.djangoSecret.value | default "insecure-secret" }}
               {{- end }}
-            - name: ALLOWED_HOSTS
-              value: {{ .Values.hosting.allowed_hosts | default "localhost,127.0.0.1" }}
-            - name: BASE_URL
-              value: {{ .Values.hosting.base_url | default "http://127.0.0.1" }}
-            - name: PAGE_CACHE_LENGTH
-              value: {{ .Values.caching.page_length | default "300" | quote }}
-            - name: STATIC_FILE_CACHE_LENGTH
-              value: {{ .Values.caching.static_file_length | default "3600" | quote }}
-            - name: IS_PROD
-              value: {{ .Values.is_prod | default "0" | quote }}
-            - name: USE_S3
-              value: {{ .Values.web.useS3 | default "0" | quote }}
-            - name: ENV_NAME
-              value: {{ .Values.env_name | default "default" }}
