@@ -63,6 +63,7 @@ web:
   ingress:
     host: eodhp-web-presence.test.com
     className: nginx
+    create: true
 
   database:
     existingSecret: ""
