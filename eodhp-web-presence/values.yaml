@@ -39,10 +39,8 @@ web:
       value: True
     - name: ENV_NAME
       value: dev
-    {{- /*
-          Can alternately be configured using existing secret and key.
-          Defining env var SQL_PASSWORD directly and existing secret/key are mutually exclusive
-    */}}
+    # Can alternately be configured using existing secret and key.
+    # Defining env var SQL_PASSWORD directly and existing secret/key are mutually exclusive
     - name: SQL_PASSWORD
       value: password
     - name: SQL_HOST
