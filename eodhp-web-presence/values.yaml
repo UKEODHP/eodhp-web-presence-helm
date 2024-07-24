@@ -53,6 +53,8 @@ web:
       value: 1
     - name: OPAL_SERVER
       value: server.opal:1234
+    - name: OPAL_PATH
+      value: /v1/path
   extraEnvFrom: {}
 #    - configMapRef:
 #        name: web-presence-envs-config-map
