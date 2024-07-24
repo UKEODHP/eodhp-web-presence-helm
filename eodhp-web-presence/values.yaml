@@ -49,6 +49,12 @@ web:
       value: user
     - name: SQL_DATABASE
       value: db
+    - name: ENABLE_OPA
+      value: 1
+    - name: OPAL_SERVER
+      value: server.opal:1234
+    - name: OPAL_PATH
+      value: /v1/path
   extraEnvFrom: {}
 #    - configMapRef:
 #        name: web-presence-envs-config-map
@@ -61,8 +67,7 @@ web:
     existingSecretKey: ""
 
   ingress:
-    host: eodhp-web-presence.test.com
-    className: nginx
+    create: false
 
   database:
     existingSecret: ""
@@ -79,3 +84,12 @@ web:
     name: web-presence
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::312280911266:role/eodhp-dev-web-presence-role"
+
+opalSidecar:
+  enabled: true
+  image: permitio/opal-client
+  env:
+    - name: OPAL_LOG_LEVEL
+      value: DEBUG
+    - name: OPAL_SERVER
+      value: opal-server.opal:7002
