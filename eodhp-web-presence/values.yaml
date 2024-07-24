@@ -90,4 +90,4 @@ opalSidecar:
     - name: OPAL_LOG_LEVEL
       value: DEBUG
     - name: OPAL_SERVER
-      value: opal-client.opal:8181
+      value: opal-server.opal:7002
