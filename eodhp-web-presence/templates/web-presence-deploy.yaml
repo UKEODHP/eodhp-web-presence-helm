@@ -46,26 +46,10 @@ spec:
             - name: opa
               containerPort: 8181
               protocol: TCP
-          envs:
+          env:
             - name: UVICORN_NUM_WORKERS
               value: "1"
             - name: OPAL_LOG_LEVEL
               value: {{ .Values.opalSidecar.env.log_levels }}
             - name: OPAL_SERVER_URL
               value: {{ .Values.opalSidecar.env.server_url }}
-#          readinessProbe:
-#            httpGet:
-#              path: /healthcheck
-#              port: http
-#            failureThreshold: 5
-#            initialDelaySeconds: 5
-#            timeoutSeconds: 10
-#            periodSeconds: 15
-#
-#          livenessProbe:
-#            httpGet:
-#              path: /healthcheck
-#              port: http
-#            failureThreshold: 5
-#            timeoutSeconds: 10
-#            periodSeconds: 30
