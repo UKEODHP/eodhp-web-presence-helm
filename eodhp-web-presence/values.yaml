@@ -89,7 +89,5 @@ opalSidecar:
   enabled: true
   image: permitio/opal-client
   env:
-    - name: OPAL_LOG_LEVEL
-      value: DEBUG
-    - name: OPAL_SERVER
-      value: opal-server.opal:7002
+    log_levels: DEBUG
+    server_url: http://opal-server.opal:7002

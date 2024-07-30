@@ -36,3 +36,20 @@ spec:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
               {{- end }}
+        - name: web-presence-opal-sidecar
+          image: {{ .Values.opalSidecar.image }}
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7000
+              protocol: TCP
+            - name: opa
+              containerPort: 8181
+              protocol: TCP
+          env:
+            - name: UVICORN_NUM_WORKERS
+              value: "1"
+            - name: OPAL_LOG_LEVEL
+              value: {{ .Values.opalSidecar.env.log_levels }}
+            - name: OPAL_SERVER_URL
+              value: {{ .Values.opalSidecar.env.server_url }}
