@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.17 (24-07-2024)
+
+- Fix sidecar for authZ integration
+
+## v0.1.16 (23-07-2024)
+
+- AuthZ integration
+
+## v0.1.15 (16-07-2024)
+
+- Bugfix
+
 ## v0.1.14 (16-07-2024)
 
 - Modify charts to take parameters from secrets and configmaps
