@@ -19,8 +19,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
-          envFrom:
-            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
           env:
             {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
@@ -29,13 +27,16 @@ spec:
                   name: {{ .Values.web.database.existingSecret }}
                   key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
             {{- end }}
+            {{- if .Values.web.djangoSecret.existingSecret }}
             - name: SECRET_KEY
-              {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
-              {{- end }}
+            {{- end }}
+            {{- toYaml .Values.web.extraEnv | nindent 12 }}
+          envFrom:
+            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
         - name: web-presence-opal-sidecar
           image: {{ .Values.opalSidecar.image }}
           imagePullPolicy: Always

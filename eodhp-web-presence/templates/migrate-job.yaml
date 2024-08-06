@@ -12,10 +12,8 @@ spec:
       - name: db-migrate
         image: {{ .Values.web.image }}
         imagePullPolicy: Always
-        entrypoint: manage
-        command: migrate
-        envFrom:
-            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
+        entrypoint: [manage]
+        command: [migrate]
         env:
           {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
           - name: SQL_PASSWORD
@@ -24,6 +22,9 @@ spec:
                 name: {{ .Values.web.database.existingSecret }}
                 key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
           {{- end }}
+          {{- toYaml .Values.web.extraEnvs | nindent 10 }}
+        envFrom:
+          {{- toYaml .Values.web.extraEnvFrom | nindent 10 }}
       restartPolicy: OnFailure
   backoffLimit: 10
 {{ end }}
