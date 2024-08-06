@@ -1,3 +1,4 @@
+{{- if .Values.opal.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -31,3 +32,4 @@ spec:
               value: {{.Values.opal.env.log_levels}}
             - name: OPAL_SERVER_URL
               value: {{.Values.opal.env.server_url}}
+{{- end }}
