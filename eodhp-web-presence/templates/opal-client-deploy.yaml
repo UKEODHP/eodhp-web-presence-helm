@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opal-client
+spec:
+  replicas: {{.Values.opal.replicas}}
+  selector:
+    matchLabels:
+      app: opal-client
+  template:
+    metadata:
+      labels:
+        app: opal-client
+    spec:
+      serviceAccountName: {{.Values.web.serviceAccount.name}}
+      containers:
+        - name: web-presence-opal
+          image: "{{ .Values.opal.image.name }}:{{ .Values.opal.image.tag }}"
+          imagePullPolicy: {{.Values.opal.image.pullPolicy}}
+          ports:
+            - name: http
+              containerPort: 7000
+              protocol: TCP
+            - name: opa
+              containerPort: 8181
+              protocol: TCP
+          env:
+            - name: UVICORN_NUM_WORKERS
+              value: "1"
+            - name: OPAL_LOG_LEVEL
+              value: {{.Values.opal.env.log_levels}}
+            - name: OPAL_SERVER_URL
+              value: {{.Values.opal.env.server_url}}

@@ -92,9 +92,13 @@ web:
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::312280911266:role/eodhp-dev-web-presence-role"
 
-opalSidecar:
-  enabled: true
-  image: permitio/opal-client
+opal:
+  enabled: false
+  image:
+    name: permitio/opal-client
+    tag: 0.7.6
+    pullPolicy: IfNotPresent
+  replicas: 1
   env:
-    log_levels: DEBUG
-    server_url: http://opal-server.opal:7002
+    log_levels: WARNING
+    server_url: http://opal-server:7002
