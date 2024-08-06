@@ -66,6 +66,10 @@ web:
     existingSecret: ""
     existingSecretKey: ""
 
+  migrateJob:
+    create: true
+    annotations: {}
+
   ingress:
     host: eodhp-web-presence.test.com
     className: nginx

@@ -1,7 +1,10 @@
+{{ if .Values.web.migrateJob.create }}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: db-migrate
+  annotations:
+    {{- toYaml .Values.web.migrateJob.annotations | nindent 4 }}
 spec:
   template:
     spec:
@@ -9,7 +12,8 @@ spec:
       - name: db-migrate
         image: {{ .Values.web.image }}
         imagePullPolicy: Always
-        command: ["sh", "-c", "python manage.py migrate"]
+        entrypoint: manage
+        command: migrate
         envFrom:
             {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
         env:
@@ -22,3 +26,4 @@ spec:
           {{- end }}
       restartPolicy: OnFailure
   backoffLimit: 10
+{{ end }}
