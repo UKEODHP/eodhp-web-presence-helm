@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: "{{ .Values.web.image.name }}:{{ .Values.web.image.tag }}"
+        image: "{{ .Values.web.image.name }}:{{ default "latest" .Values.web.image.tag }}"
         imagePullPolicy: {{ .Values.web.image.pullPolicy }}
         command: [manage]
         args: [migrate]
