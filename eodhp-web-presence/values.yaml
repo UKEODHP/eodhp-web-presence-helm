@@ -3,8 +3,11 @@
 # Declare variables to be passed into your templates.
 
 web:
-  image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12
-
+  image:
+    name: public.ecr.aws/n1b3o1k2/eodhp-web-presence
+    tag: 0.1.12
+    pullPolicy: IfNotPresent
+  replicas: 1
   extraEnvs:
     []
     # - name: SQL_PORT

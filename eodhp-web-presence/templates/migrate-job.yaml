@@ -10,8 +10,8 @@ spec:
     spec:
       containers:
       - name: db-migrate
-        image: {{ .Values.web.image }}
-        imagePullPolicy: Always
+        image: "{{ .Values.web.image.name }}:{{ .Values.web.image.tag }}"
+        imagePullPolicy: {{ .Values.web.image.pullPolicy }}
         entrypoint: [manage]
         command: [migrate]
         {{- if or (and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret)) (.Values.web.extraEnvs) }}

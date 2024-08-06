@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eodhp-web-presence
 spec:
-  replicas: 1
+  replicas: {{ .Values.web.replicas }}
   selector:
     matchLabels:
       app: eodhp-web-presence
@@ -15,8 +15,8 @@ spec:
       serviceAccountName: {{ .Values.web.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.web.image }}
-          imagePullPolicy: Always
+          image: "{{ .Values.web.image }}:{{ .Values.web.tag }}"
+          imagePullPolicy: {{ .Values.web.image.pullPolicy }}
           ports:
             - containerPort: 8000
           {{- if or (and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret)) (.Values.web.extraEnv) (.Values.web.djangoSecret.existingSecret) }}
