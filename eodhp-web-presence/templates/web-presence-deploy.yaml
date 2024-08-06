@@ -15,7 +15,7 @@ spec:
       serviceAccountName: {{ .Values.web.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: "{{ .Values.web.image.name }}:{{ .Values.web.tag }}"
+          image: "{{ .Values.web.image.name }}:{{ .Values.web.image.tag | default latest }}"
           imagePullPolicy: {{ .Values.web.image.pullPolicy }}
           ports:
             - containerPort: 8000
