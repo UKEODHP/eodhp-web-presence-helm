@@ -12,8 +12,8 @@ spec:
       - name: db-migrate
         image: "{{ .Values.web.image.name }}:{{ .Values.web.image.tag }}"
         imagePullPolicy: {{ .Values.web.image.pullPolicy }}
-        entrypoint: [manage]
-        command: [migrate]
+        command: [manage]
+        args: [migrate]
         {{- if or (and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret)) (.Values.web.extraEnvs) }}
         env:
           {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
