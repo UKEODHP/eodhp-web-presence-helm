@@ -2,69 +2,67 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
 web:
   image: public.ecr.aws/n1b3o1k2/eodhp-web-presence:0.1.12
 
   extraEnvs:
-    - name: MY_EXTRA_ENV
-      value: MY_VALUE
-    - name: SQL_PORT
-      value: 5432
-    - name: SQL_ENGINE
-      value: django.db.backends.postgresql_psycopg2
-    - name: APP_URL
-      value: dev.eodatahub.org.uk
-    - name: EOX_VIEWSERVER_URL
-      value: https://my.eoxviewserver.org.uk
-    - name: RESOURCE_CATALOGUE_URL
-      value: https://my.resourcecatalogue.org.uk
-    - name: RESOURCE_CATALOGUE_VERSION
-      value: main
-    - name: CATALOGUE_DATA_URL
-      value: https://my.resourcecataloguedata.org.uk/api/
-    - name: NOTEBOOKS_URL
-      value: https://my.notebooks.org.uk/
-    - name: ALLOWED_HOSTS
-      value: host.eodatahub.org.uk
-    - name: BASE_URL
-      value: https://www.eodatahub.org.uk
-    - name: PAGE_CACHE_LENGTH
-      value: 300
-    - name: STATIC_FILE_CACHE_LENGTH
-      value: 3600
-    - name: IS_PROD
-      value: 0
-    - name: USE_S3
-      value: True
-    - name: ENV_NAME
-      value: dev
-    # Can alternately be configured using existing secret and key.
-    # Defining env var SQL_PASSWORD directly and existing secret/key are mutually exclusive
-    - name: SQL_PASSWORD
-      value: password
-    - name: SQL_HOST
-      value: host
-    - name: SQL_USER
-      value: user
-    - name: SQL_DATABASE
-      value: db
-    - name: ENABLE_OPA
-      value: 1
-    - name: OPAL_SERVER
-      value: server.opal:1234
-    - name: OPAL_PATH
-      value: /v1/path
-  extraEnvFrom: {}
-#    - configMapRef:
-#        name: web-presence-envs-config-map
-#    - secretRef:
-#        name: web-presence-envs
+    []
+    # - name: SQL_PORT
+    #   value: 5432
+    # - name: SQL_ENGINE
+    #   value: django.db.backends.postgresql_psycopg2
+    # - name: APP_URL
+    #   value: dev.eodatahub.org.uk
+    # - name: EOX_VIEWSERVER_URL
+    #   value: https://my.eoxviewserver.org.uk
+    # - name: RESOURCE_CATALOGUE_URL
+    #   value: https://my.resourcecatalogue.org.uk
+    # - name: RESOURCE_CATALOGUE_VERSION
+    #   value: main
+    # - name: CATALOGUE_DATA_URL
+    #   value: https://my.resourcecataloguedata.org.uk/api/
+    # - name: NOTEBOOKS_URL
+    #   value: https://my.notebooks.org.uk/
+    # - name: ALLOWED_HOSTS
+    #   value: host.eodatahub.org.uk
+    # - name: BASE_URL
+    #   value: https://www.eodatahub.org.uk
+    # - name: PAGE_CACHE_LENGTH
+    #   value: 300
+    # - name: STATIC_FILE_CACHE_LENGTH
+    #   value: 3600
+    # - name: IS_PROD
+    #   value: 0
+    # - name: USE_S3
+    #   value: True
+    # - name: ENV_NAME
+    #   value: dev
+    # # Can alternately be configured using existing secret and key.
+    # # Defining env var SQL_PASSWORD directly and existing secret/key are mutually exclusive
+    # - name: SQL_PASSWORD
+    #   value: password
+    # - name: SQL_HOST
+    #   value: host
+    # - name: SQL_USER
+    #   value: user
+    # - name: SQL_DATABASE
+    #   value: db
+    # - name: ENABLE_OPA
+    #   value: 1
+    # - name: OPAL_SERVER
+    #   value: server.opal:1234
+    # - name: OPAL_PATH
+    #   value: /v1/path
+  extraEnvFrom: []
+  #    - configMapRef:
+  #        name: web-presence-envs-config-map
+  #    - secretRef:
+  #        name: web-presence-envs
 
   djangoSecret:
     value: insecure-secret
-    existingSecret: ""
-    existingSecretKey: ""
+    existingSecret: null
+    existingSecretKey: null
 
   migrateJob:
     create: true
@@ -76,9 +74,9 @@ web:
     create: true
 
   database:
-    existingSecret: ""
+    existingSecret: null
     secretKeys:
-      sqlPasswordKey: ""
+      sqlPasswordKey: null
 
   storage_class: standard
 
