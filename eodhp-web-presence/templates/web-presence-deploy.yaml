@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eodhp-web-presence
 spec:
-  replicas: 1
+  replicas: {{ .Values.web.replicas }}
   selector:
     matchLabels:
       app: eodhp-web-presence
@@ -15,12 +15,11 @@ spec:
       serviceAccountName: {{ .Values.web.serviceAccount.name }}
       containers:
         - name: eodhp-web-presence
-          image: {{ .Values.web.image }}
-          imagePullPolicy: Always
+          image: "{{ .Values.web.image.name }}:{{ default "latest" .Values.web.image.tag }}"
+          imagePullPolicy: {{ .Values.web.image.pullPolicy }}
           ports:
             - containerPort: 8000
-          envFrom:
-            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
+          {{- if or (and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret)) (.Values.web.extraEnv) (.Values.web.djangoSecret.existingSecret) }}
           env:
             {{- if and (.Values.web.database.secretKeys.sqlPasswordKey) (.Values.web.database.existingSecret) }}
             - name: SQL_PASSWORD
@@ -29,27 +28,18 @@ spec:
                   name: {{ .Values.web.database.existingSecret }}
                   key:  {{ .Values.web.database.secretKeys.sqlPasswordKey }}
             {{- end }}
+            {{- if .Values.web.djangoSecret.existingSecret }}
             - name: SECRET_KEY
-              {{- if .Values.web.djangoSecret.existingSecret }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.web.djangoSecret.existingSecret }}
                   key: {{ .Values.web.djangoSecret.existingSecretKey }}
-              {{- end }}
-        - name: web-presence-opal-sidecar
-          image: {{ .Values.opalSidecar.image }}
-          imagePullPolicy: Always
-          ports:
-            - name: http
-              containerPort: 7000
-              protocol: TCP
-            - name: opa
-              containerPort: 8181
-              protocol: TCP
-          env:
-            - name: UVICORN_NUM_WORKERS
-              value: "1"
-            - name: OPAL_LOG_LEVEL
-              value: {{ .Values.opalSidecar.env.log_levels }}
-            - name: OPAL_SERVER_URL
-              value: {{ .Values.opalSidecar.env.server_url }}
+            {{- end }}
+            {{- if .Values.web.extraEnv }}
+            {{- toYaml .Values.web.extraEnv | nindent 12 }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.web.extraEnvFrom }}
+          envFrom:
+            {{- toYaml .Values.web.extraEnvFrom | nindent 12 }}
+          {{- end }}

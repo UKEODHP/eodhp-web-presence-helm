@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.18 (Unreleased)
+
+- Updated db-migrate job for web presence 0.1.17
+- Refactored opal into separate, optional deployment
+- Fixed bug when values files has no extraEnvs or extraEnvFroms
+- Refactored web.images to be a structure
+
 ## v0.1.17 (24-07-2024)
 
 - Fix sidecar for authZ integration
@@ -24,12 +31,12 @@
 
 - Add optional web presence service account
 - Add USE_S3 environment variable
-- Update to use v0.1.11 docker image 
+- Update to use v0.1.11 docker image
 - Add environment variables for identification
 
 ## v0.1.10 (04-06-2024)
 
-- Update to use v0.1.10 docker image 
+- Update to use v0.1.10 docker image
 - Add environment variables for caching
 
 ## 0.1.9 (14-05-2024)
@@ -39,7 +46,7 @@
 
 ## v0.1.8 (26-04-2024)
 
-- Update to use v0.1.8 docker image 
+- Update to use v0.1.8 docker image
 
 ## v0.1.7 (15-04-2024)
 
@@ -49,11 +56,11 @@
 
 ## v0.1.6 (02-04-2024)
 
-- Update to use v0.1.6 docker image 
+- Update to use v0.1.6 docker image
 
 ## v0.1.5 (02-04-2024)
 
-- Update to use v0.1.5 docker image 
+- Update to use v0.1.5 docker image
 
 ## v0.1.4 (20-03-2024)
 
@@ -62,7 +69,7 @@
 ## v0.1.3 (19-03-2024)
 
 - Updated to use v0.1.4 docker image
-  
+
 ## v0.1.2 (05-03-2024)
 
 - Updated to use v0.1.2 docker image
@@ -71,7 +78,6 @@
 
 - Updated to use v0.1.1 docker image
 - Removed unused PVC
-
 
 ## v0.1.0 (16-02-2024)
 
